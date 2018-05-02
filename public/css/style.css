@@ -1,0 +1,29 @@
+body {
+  font-family: 'PT Serif', serif;
+  font-size: 24px;
+}
+
+#delete {
+  margin-right: 80px;
+}
+#esporta {
+  margin-right: 10px;
+}
+#importa {
+  margin-right: 10px;
+}
+
+#draggable {
+  display: inline-block;
+  vertical-align: top;
+}
+
+#draggableElementContainerPaper {
+  border: solid 2px black;
+  margin-top: 30px;
+}
+
+#canvas {
+  display: inline-block;
+  vertical-align: top;
+}j

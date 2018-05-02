@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="it" >
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RobustDesigner</title>
+
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jointjs/2.1.0/joint.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>RobustDesigner</h1>
+
+      <!-- Button -->
+      <button type="button" id="deleteAll" class="btn btn-danger pull-right">Elimina tutto</button>
+
+      <button type="button" id="delete" class="btn btn-warning pull-right" disabled="true">Elimina</button>
+
+      <button id="esporta" type="button">JSON</button>
+
+      <button type="button" id="importa" class="btn btn-info pull-right" onclick="importa()">Importa</button>
+
+      <!-- Textarea -->
+      <textarea id="textA" placeholder="descrizione..." disabled="true"></textarea>
+      <button type="button" id="modifica" class="btn btn-info pull-right" onclick="Modifica()" disabled="true">Modifica</button>
+
+      <!-- Canvas -->
+      <div style="margin-top: 50px; width:100%; white-space:nowrap;">
+
+          <span style="display: inline-block; vertical-align: top;">
+            <div id="draggableElementContainerPaper" style="border: solid 1px black; margin: 20px;"></div>
+          </span
+
+          <span style="width:5%"></span>
+
+          <span style="display: inline-block; vertical-align: top;">
+            <div id="paper" style="border: solid 1px black; margin: 20px;"></div>
+          </span>
+      </div>
+
+</div>
+
+<!-- Dependencies -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jointjs/2.1.0/joint.js"></script>
+<script src='https://ariutta.github.io/svg-pan-zoom/dist/svg-pan-zoom.min.js'></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script  src="js/index.js"></script>
+
+</body>
+</html>
