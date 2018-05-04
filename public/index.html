@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>RobustDesigner</title>
-
+    <!---->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jointjs/2.1.0/joint.css" />
+  <link rel="stylesheet" type="text/css" href="css/joint.min.css" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
@@ -19,39 +19,46 @@
 
       <!-- Button -->
       <button type="button" id="deleteAll" class="btn btn-danger pull-right">Elimina tutto</button>
-
       <button type="button" id="delete" class="btn btn-warning pull-right" disabled="true">Elimina</button>
+      <button type="button" id="esporta" class="btn btn-success pull-right">JSON</button>
 
-      <button id="esporta" type="button">JSON</button>
-
-      <button type="button" id="importa" class="btn btn-info pull-right" onclick="importa()">Importa</button>
+<!--
+      <button type="button" id="importa" class="btn btn-info pull-right">Importa</button>
+      <input type="file" id="Diagramma" name="Diagramma" value="Importa" accept=".json">
+-->
 
       <!-- Textarea -->
-      <textarea id="textA" placeholder="descrizione..." disabled="true"></textarea>
-      <button type="button" id="modifica" class="btn btn-info pull-right" onclick="Modifica()" disabled="true">Modifica</button>
+      <div class="form-group">
+       <label for="Descrizione"></label>
+       <textarea id="textA" rows="2" cols="50" maxlength="50" placeholder="descrizione..." disabled="true"></textarea>
+       <button type="button" id="modifica" class="btn btn-info" disabled="true">Modifica</button>
+      </div>
 
       <!-- Canvas -->
-      <div style="margin-top: 50px; width:100%; white-space:nowrap;">
+      <div id="canvas">
 
-          <span style="display: inline-block; vertical-align: top;">
-            <div id="draggableElementContainerPaper" style="border: solid 1px black; margin: 20px;"></div>
+          <!-- Drag area -->
+          <span id="spanDrag">
+            <div id="draggableElementContainerPaper"></div>
           </span
 
-          <span style="width:5%"></span>
+          <span></span>
 
-          <span style="display: inline-block; vertical-align: top;">
-            <div id="paper" style="border: solid 1px black; margin: 20px;"></div>
+          <!-- Drop Area -->
+          <span id="spanDrop">
+            <div id="paper"></div>
           </span>
       </div>
 
 </div>
 
-<!-- Dependencies -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jointjs/2.1.0/joint.js"></script>
-<script src='https://ariutta.github.io/svg-pan-zoom/dist/svg-pan-zoom.min.js'></script>
+
+<!-- Librerie JS -->
+<script src="js/jquery.js"></script>
+<script src="js/lodash.js"></script>
+<script src="js/backbone.js"></script>
+<script src="js/joint.min.js"></script>
+<script src="js/svg-pan-zoom.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
 <script  src="js/index.js"></script>

@@ -1,11 +1,16 @@
 // Model //
 var graph = new joint.dia.Graph;
 
-// default link //
+// Default link //
 var link = new joint.dia.Link({
   attrs: {
       '.connection': { stroke: 'black', strokeWidth: '1' },
-      '.marker-target': { d: 'M 10 0 L 0 5 L 10 10 z' }
+      '.marker-target': {
+          stroke: 'black',
+          strokeWidth: 2,
+          fill: 'black',
+          d: 'M 10 0 L 0 5 M 0 5 L 10 10'
+      }
   },
   labels: [{ position: 0.5, attrs: { text: { text: ''}}}]
 });
@@ -138,10 +143,11 @@ paper.on('blank:pointerdown',
       $('#delete').prop('disabled', true);
       $('#modifica').prop('disabled', true);
       $('#textA').prop('disabled', true);
+      $('#textA').val("");
 
         if(previousCellView != null){
             previousCellView.unhighlight();
-            console.log("unhighlighted "+previousCellView.model.id);
+            //console.log("unhighlighted "+previousCellView.model.id);
         }
     }
 );
@@ -160,7 +166,7 @@ joint.shapes.devs.CircleModel = joint.shapes.devs.Model.extend({
         attrs: {
             '.body': {r: 50, cx: 50, stroke: 'none', fill: 'transparent'},
             //set text '.label': {text: $("#jsontext").val()},
-            '.label': { text: '', 'ref-x': .5, 'ref-y': .4 },
+            '.label': { text: '', fontSize: 11, fontWeight: 'normal', 'ref-x': .5, 'ref-y': .4 },
             'image': { 'ref-x': -15, 'ref-y': -15, ref: 'circle', width: 110, height: 110 },
         }
 
@@ -173,17 +179,53 @@ joint.shapes.devs.CircleModelView = joint.shapes.devs.ModelView;
 var cells = [];
 
 // Actor
+var Actor = new joint.shapes.devs.CircleModel({
+  type: 'devs.CircleModel',
+  position: {x: 35, y: 90},
+  attrs: {
+        text: {text: 'Actor'},
+        image: { 'xlink:href': './img/Actor.png' },
+        '.body': {stroke: 'none', fill: 'yellow'}
+  },
+  //linkConnectionPoint: joint.util.shapePerimeterConnectionPoint,
+  inPorts: [''],
+  //outPorts: [''],
+  ports: {
+      groups: {
+          'in': {
+                  position: {
+                    args: {
+                        dx: 22,
+                        dy: -35
+                  }
+              },
+              attrs: {
+                  '.port-body': {
+                      stroke: 'none',
+                      fill: 'transparent',
+                      r: 20,
+                      cx: 19,
+                  }
+
+              }
+          },
+          //'out': {}
+      }
+  },
+});
+cells[0] = Actor;
 
 // Boundary
 var Boundary = new joint.shapes.devs.CircleModel({
   type: 'devs.CircleModel',
-  position: {x: 35, y: 400},
+  position: {x: 35, y: 250},
   attrs: {
-        text: {text: 'Boundary', fontSize: 15},
-        image: { 'xlink:href': './img/Boundary.png' }
+        text: {text: 'Boundary'},
+        image: { 'xlink:href': './img/Boundary.png' },
+        '.body': {stroke: 'none', fill: 'transparent'}
   },
   inPorts: [''],
-  outPorts: [''],
+  //outPorts: [''],
   ports: {
       groups: {
           'in': {
@@ -198,22 +240,91 @@ var Boundary = new joint.shapes.devs.CircleModel({
                       stroke: 'none',
                       fill: 'transparent',
                       r: 23,
+                      cx: 21.5,
+                  }
+
+              }
+          },
+          //'out': {}
+      }
+  },
+});
+cells[1] = Boundary;
+
+// Control
+var Control = new joint.shapes.devs.CircleModel({
+  type: 'devs.CircleModel',
+  position: {x: 35, y: 430},
+  attrs: {
+        text: {text: 'Control'},
+        image: { 'xlink:href': './img/Control.png' },
+        '.body': {stroke: 'none', fill: 'transparent'}
+  },
+  inPorts: [''],
+  //outPorts: [''],
+  ports: {
+      groups: {
+          'in': {
+                  position: {
+                    args: {
+                        dx: 18,
+                        dy: -36
+                  }
+              },
+              attrs: {
+                  '.port-body': {
+                      stroke: 'none',
+                      fill: 'red',
+                      opacity: '0.5',
+                      r: 23.8,
                       cx: 22,
                   }
 
               }
           },
-          'out': {}
+          //'out': {}
       }
   },
 });
-cells[0] = Boundary;
-
-// Control
-cells[1] = Boundary.clone();
-cells[1].position(35, 70);
+cells[2] = Control;
 
 // Entity
+var Entity = new joint.shapes.devs.CircleModel({
+  type: 'devs.CircleModel',
+  position: {x: 35, y: 600},
+  attrs: {
+        text: {text: 'Entity'},
+        image: { 'xlink:href': './img/Entity.png' },
+        '.body': {stroke: 'none', fill: 'transparent'}
+  },
+  inPorts: [''],
+  //outPorts: [''],
+  ports: {
+      groups: {
+          'in': {
+                  position: {
+                    args: {
+                        dx: 18,
+                        dy: -39
+                  }
+              },
+              attrs: {
+                  '.port-body': {
+                      stroke: 'none',
+                      fill: 'transparent',
+                      r: 24.3,
+                      cx: 20,
+                  }
+
+              }
+          },
+          //'out': {}
+      }
+  },
+});
+cells[3] = Entity;
+
+// Commento
 
 
 // Aggiungo gli elementi alla draggable Area //
@@ -290,7 +401,6 @@ paper.on('cell:pointerdown', function(){
 paper.on('cell:pointerup', function(){
   svgZoom.enablePan();
 });
-
 ////////// ////////// //////////
 
 // BUTTON FUNCTION /////////////////////
@@ -304,8 +414,10 @@ $('#delete').on('click', function() {
 });
 
 $('#modifica').on('click', function() {
-  if (selected)
+  if (selected) {
     selected.attr('text/text', $('#textA').val());
+    $('#textA').val("");
+  }
 });
 
 $('#esporta').on('click', function() {
@@ -318,8 +430,8 @@ $('#esporta').on('click', function() {
 });
 
 $('#importa').on('click', function() {
-  graph.clear();
-  //graph.fromJSON(JSONobj);
+
+    graph.fromJSON(JSONobj);
 
 });
 //////////////////////////////////////
