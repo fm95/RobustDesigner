@@ -380,29 +380,6 @@ draggableElementContainerPaper.on('cell:pointerdown', function(cellView, e, x, y
 });
 //////////////////////////////////
 
-//// ZOOM //////////  //////////
-var canvas = $('#paper');
-
-var svgZoom = svgPanZoom('#paper svg', {
-  center: false,
-  zoomEnabled: true,
-  panEnabled: true,
-  controlIconsEnabled: true,
-  fit: false,
-  minZoom: 0.5,
-  maxZoom: 3,
-  zoomScaleSensitivity: 0.5
-});
-
-paper.on('cell:pointerdown', function(){
-  svgZoom.disablePan();
-});
-
-paper.on('cell:pointerup', function(){
-  svgZoom.enablePan();
-});
-////////// ////////// //////////
-
 // BUTTON FUNCTION /////////////////////
 $('#deleteAll').on('click', function() {
   graph.clear();
