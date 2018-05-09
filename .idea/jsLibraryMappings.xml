@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{backbone, dOYwZb, joint, jquery, lodash, svg-pan-zoom}" />
+    <file url="PROJECT" libraries="{backbone, joint, jquery, lodash}" />
   </component>
 </project>

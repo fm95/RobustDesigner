@@ -1,9 +1,9 @@
 {
-  "name": "editor",
-  "version": "0.0.0",
+  "name": "ProfOfConcept",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node app.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",

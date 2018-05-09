@@ -9,10 +9,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="joint" level="application" />
-    <orderEntry type="library" name="svg-pan-zoom" level="application" />
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="lodash" level="application" />
     <orderEntry type="library" name="backbone" level="application" />
-    <orderEntry type="library" name="dOYwZb" level="application" />
   </component>
 </module>

@@ -12,7 +12,6 @@ var link = new joint.dia.Link({
           d: 'M 10 0 L 0 5 M 0 5 L 10 10'
       }
   },
-  labels: [{ position: 0.5, attrs: { text: { text: ''}}}]
 });
 
 // View //
@@ -27,12 +26,6 @@ var paper = new joint.dia.Paper({
   gridSize: 10,
   backgroundColor: 'white',
   interactive: true,
-  // Elimina un elemento con double-click
-  elementView: joint.dia.ElementView.extend({
-      pointerdblclick: function(evt, x, y) {
-          //this.model.remove();
-      }
-  }),
   defaultLink: link,
   highlighting: {
         'default': {
@@ -101,8 +94,6 @@ paper.on('cell:pointerdown', function(cellView) {
     $('#delete').prop('disabled', false);
     $('#modifica').prop('disabled', false);
     $('#textA').prop('disabled', false);
-
-    //selected.
 });
 
 paper.on('element:pointerdown',
@@ -118,21 +109,6 @@ paper.on('element:pointerdown',
         previousCellView = elementView;
     }
 );
-
-paper.on('link:pointerdblclick', function(linkView) {
-  // NON FUNZIONA
-    resetAll(this);
-
-    var currentLink = linkView.model;
-    currentLink.attr('line/stroke', 'orange')
-    currentLink.label(0, {
-        attrs: {
-            body: {
-                stroke: 'orange'
-            }
-        }
-    })
-});
 ///////////////////////////////////////////
 
 // Click sul piano //
@@ -274,7 +250,7 @@ var Control = new joint.shapes.devs.CircleModel({
               attrs: {
                   '.port-body': {
                       stroke: 'none',
-                      fill: 'red',
+                      fill: 'transparent',
                       opacity: '0.5',
                       r: 23.8,
                       cx: 22,
@@ -392,9 +368,15 @@ $('#delete').on('click', function() {
 
 $('#modifica').on('click', function() {
   if (selected) {
-    selected.attr('text/text', $('#textA').val());
-    $('#textA').val("");
+    if(selected.isLink()) {
+      selected.appendLabel({
+          attrs: {text: {text: $('#textA').val()}},
+          position: {distance: 0.50}});
+    }
+    else
+      selected.attr('text/text', $('#textA').val());
   }
+  $('#textA').val("");
 });
 
 $('#esporta').on('click', function() {
