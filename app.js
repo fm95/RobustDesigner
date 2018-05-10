@@ -1,3 +1,15 @@
+/*
+* File: app.js
+* Version: 1.0
+* Type: javascript
+* Date: 2018-04-29
+* Author: Daniele Dal Maso
+* E-mail: JurassicSWE@gmail.com
+*
+* License: GNU General Public License v3.0
+*
+*/
+
 var createError = require('http-errors');
 var express = require('express');
 var cookieParser = require('cookie-parser');
@@ -26,5 +38,3 @@ app.use("*",function(req,res){
 app.listen(3000);
 
 module.exports = app;
-
-

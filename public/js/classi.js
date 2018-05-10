@@ -1,3 +1,15 @@
+/*
+* File: classi.js
+* Version: 1.0
+* Type: javascript
+* Date: 2018-05-05
+* Author: Lidia Alecci
+* E-mail: JurassicSWE@gmail.com
+*
+* License: GNU General Public License v3.0
+*
+*/
+
 // Model //
 var graph = new joint.dia.Graph;
 
